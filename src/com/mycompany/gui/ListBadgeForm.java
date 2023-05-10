@@ -96,7 +96,7 @@ public class ListBadgeForm extends BaseForm {
          Button add = new Button("add badge");
                               
                 add.addActionListener((evt) -> {
-                  new AddBadgeForm().show();
+                  new AddBadgeForm(res).show();
                     });
         addAll(add);
         

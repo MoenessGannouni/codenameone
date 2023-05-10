@@ -26,6 +26,7 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.LayeredLayout;
+import com.codename1.ui.util.Resources;
 import com.mycompany.services.AbonnementService;
 
 /**
@@ -34,7 +35,7 @@ import com.mycompany.services.AbonnementService;
  */
 public class ModifAbonnnementForm extends BaseForm {
     
-    public ModifAbonnnementForm(int id) {
+    public ModifAbonnnementForm(int id,Resources res) {
          super("Abonnement", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);

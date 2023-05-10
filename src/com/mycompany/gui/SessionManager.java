@@ -26,6 +26,24 @@ public class SessionManager {
     private static String prenom;
     private static String date_naissance;
     private static String tel;
+    private static String roles;
+
+    
+    public static Preferences getPref() {
+        return pref;
+    }
+
+    public static void setPref(Preferences pref) {
+        SessionManager.pref = pref;
+    }
+    
+    public static String getRoles() {
+        return pref.get("roles",roles);
+    }
+
+    public static void setRoles(String roles) {
+        pref.set("roles",roles);
+    }
 
     public static String getTel() {
         return tel;
@@ -61,13 +79,7 @@ public class SessionManager {
     }
     
 
-    public static Preferences getPref() {
-        return pref;
-    }
-
-    public static void setPref(Preferences pref) {
-        SessionManager.pref = pref;
-    }
+    
 
     public static int getId() {
         return pref.get("id",id);// kif nheb njib id user connecté apres njibha men pref 

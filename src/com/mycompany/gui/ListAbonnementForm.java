@@ -88,7 +88,8 @@ public class ListAbonnementForm extends BaseForm {
                      
                     });
                  upd.addActionListener((evt) -> {
-                        new ModifAbonnnementForm(a.getId_abonnement()).show();
+                        new ModifAbonnnementForm(a.getId_abonnement(),res).show();
+
                     });
                  
                   

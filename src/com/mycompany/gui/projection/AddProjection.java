@@ -91,6 +91,7 @@ public class AddProjection extends BaseForm {
 
                     }
                     Dialog.show("Success", "Connection accepted", new Command("OK"));
+                    new ListProjection(res).show();
                 }
             }
         });

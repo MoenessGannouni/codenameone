@@ -14,6 +14,7 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.util.Resources;
 import com.mycompany.entites.Abonnement;
 import com.mycompany.entites.Badge;
 import com.mycompany.services.AbonnementService;
@@ -24,8 +25,8 @@ import com.mycompany.services.BadgeService;
  * @author Home
  */
 public class AddBadgeForm extends BaseForm{
-     public AddBadgeForm() {
-        
+     public AddBadgeForm(Resources res) {
+       
 
     setTitle("Add Badge");
 
@@ -56,6 +57,7 @@ public class AddBadgeForm extends BaseForm{
                 
                 if (BadgeService.getInstance().AddBadge(badge)) {
                     Dialog.show("Success","Connection accepted",new Command("OK"));
+                    new ListAbonnementForm(res).show();
                 } else {
                     Dialog.show("ERROR", "erreur", new Command("OK"));
                 }

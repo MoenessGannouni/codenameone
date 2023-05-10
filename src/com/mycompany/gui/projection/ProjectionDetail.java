@@ -124,6 +124,7 @@ public class ProjectionDetail extends BaseForm {
                 public void actionPerformed(ActionEvent evt) {
                     ProjectionService.getInstance().delete(projection.getId_projection());
                     Dialog.show("Success", "Connection accepted", new Command("OK"));
+                    new ListProjection(res).show();
                 }
             });
             addAll(btnDelete);

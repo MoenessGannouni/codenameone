@@ -127,9 +127,15 @@ public class ServiceUser {
                 
                 System.out.println("current user ==> "+ SessionManager.getPseudo()+", "+ SessionManager.getPassowrd());
                 
-                if(user.size() >0 ) // l9a user
+                if(user.size() >0 ){  // l9a user
+                
                    
                     new ProfileForm(rs).show();
+                
+                    
+                }
+                   
+                    
                     
                     }
             

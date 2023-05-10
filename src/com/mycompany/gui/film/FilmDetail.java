@@ -123,6 +123,7 @@ public class FilmDetail extends BaseForm {
             public void actionPerformed(ActionEvent evt) {
                 FilmService.getInstance().delete(film.getId_film());
                 Dialog.show("Success", "Connection accepted", new Command("OK"));
+                new ListFilm(res).show();
             }
         });
         addAll(btnDelete);
