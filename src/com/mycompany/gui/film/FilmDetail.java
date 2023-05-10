@@ -26,6 +26,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entites.Film;
 import com.mycompany.gui.BaseForm;
+import com.mycompany.gui.Trailer;
 import com.mycompany.services.FilmService;
 import com.mycompany.services.ProjectionService;
 import java.io.IOException;
@@ -58,6 +59,12 @@ public class FilmDetail extends BaseForm {
         img.setUIID("Container");
         img.getAllStyles().setMarginTop(2);
         add(img);
+        
+        Button trailer = new Button("See Trailer");
+        trailer.addActionListener(e-> {
+            new Trailer(this, film.getTrailer()).show();
+        });
+        add(trailer);
 
         Label title = new Label();
         title.setText("Title :");

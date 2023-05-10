@@ -19,9 +19,13 @@
 
 package com.mycompany.gui;
 
+import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
+import com.codename1.l10n.SimpleDateFormat;
+import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Component;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
@@ -33,7 +37,10 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
+import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
+import com.mycompany.services.ServiceUser;
+import java.util.Date;
 
 /**
  * The user profile form
@@ -68,27 +75,53 @@ public class ProfileForm extends BaseForm {
         facebook.setTextPosition(BOTTOM);
         twitter.setTextPosition(BOTTOM);
         
-        add(LayeredLayout.encloseIn(
-                sl,
-                BorderLayout.south(
-                    GridLayout.encloseIn(3, 
-                            facebook,
-                            FlowLayout.encloseCenter(
-                                new Label(res.getImage("face.jpg"), "PictureWhiteBackgrond")),
-                            twitter
-                    )
-                )
-        ));
+        Button modiff = new Button("Modifier");
+        
+       
+        
+        
+        
 
-        TextField username = new TextField("sandeep");
-        username.setUIID("TextFieldBlack");
-        addStringValue("Username", username);
+        String ps = SessionManager.getPseudo();
+        String n = SessionManager.getNom();
+        String p = SessionManager.getPrenom();
+        String d = SessionManager.getDate_naissance();
+        String t = SessionManager.getTel();
+        
+        System.out.println(ps);
+        
+        TextField pseudo = new TextField(ps);
+        pseudo.setUIID("TextFieldBlack");
+        addStringValue("Pseudo", pseudo);
+        
+        TextField nom = new TextField(n);
+        nom.setUIID("TextFieldBlack");
+        addStringValue("Nom", nom);
+        
+        TextField prenom = new TextField(p);
+        prenom.setUIID("TextFieldBlack");
+        addStringValue("Prenom", prenom);
+        
+        TextField tel = new TextField(t);
+        tel.setUIID("TextFieldBlack");
+        addStringValue("Tel", tel);
+        
+        
+        TextField da = new TextField(d);
+        da.setUIID("TextFieldBlack");
+        addStringValue("Date", da);
+        
+        Picker dateTimePicker = new Picker();
+        dateTimePicker.setType(Display.PICKER_TYPE_DATE);
+        dateTimePicker.getAllStyles().setFgColor(0xff0000);
+        
+        
 
-        TextField email = new TextField("sandeep@gmail.com", "E-Mail", 20, TextField.EMAILADDR);
+        TextField email = new TextField(SessionManager.getEmail(), "E-Mail", 20, TextField.EMAILADDR);
         email.setUIID("TextFieldBlack");
         addStringValue("E-Mail", email);
         
-        TextField password = new TextField("sandeep", "Password", 20, TextField.PASSWORD);
+        TextField password = new TextField(SessionManager.getPassowrd(), "Password", 20, TextField.PASSWORD);
         password.setUIID("TextFieldBlack");
         addStringValue("Password", password);
 
@@ -99,9 +132,37 @@ public class ProfileForm extends BaseForm {
         cb2.setUIID("Label");
         cb2.setPressedIcon(res.getImage("on-off-on.png"));
         
-        addStringValue("Facebook", FlowLayout.encloseRightMiddle(cb1));
-        addStringValue("Twitter", FlowLayout.encloseRightMiddle(cb2));
+        
+        
+        modiff.setUIID("Edit");
+    addStringValue("",modiff);
+    
+    modiff.addActionListener((edit) -> {
+       InfiniteProgress ip = new InfiniteProgress();
+       final Dialog ipDlg = ip.showInifiniteBlocking();
+       
+       
+       Date date = dateTimePicker.getDate();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String formattedDate = dateFormat.format(date);
+                
+                
+       
+       ServiceUser.EditUser(SessionManager.getId(),nom.getText(),prenom.getText(),email.getText(),tel.getText(),pseudo.getText(),password.getText(),formattedDate);
+       SessionManager.setPseudo(pseudo.getText());
+       SessionManager.setNom(nom.getText());
+       SessionManager.setPrenom(prenom.getText());
+       SessionManager.setEmail(email.getText());
+       
+       
+       Dialog.show("succes","Modifications avec succes","OK",null);
+       ipDlg.dispose();
+       refreshTheme();
+       
+    });
     }
+    
+    
     
     private void addStringValue(String s, Component v) {
         add(BorderLayout.west(new Label(s, "PaddedLabel")).

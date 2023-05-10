@@ -63,24 +63,14 @@ public class AddFilm extends BaseForm {
         
         btnSearch.addActionListener((ActionEvent e) -> {
             StringTokenizer st = new StringTokenizer(inputSearch.getText(), "/");
-            int count = 0;
-            while (st.hasMoreTokens()) {
-                String token = st.nextToken();
-                if (count == 3) {
-                    System.out.println(token);
-                    getMovie(token);
-                }
-                count++;
-            }
+                    FilmService.getInstance().search();
+            
         });
         
 
     }
     
 
-    public void getMovie(String id_imdb) {
-    String url = "https://api.themoviedb.org/3/movie/" + id_imdb + "?api_key=bc707c1f4e36344270536a932b5f6a58";
-}
     
     
 }

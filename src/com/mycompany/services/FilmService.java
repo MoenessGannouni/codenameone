@@ -10,6 +10,7 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
+import com.codename1.messaging.Message;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.entites.Film;
 import com.mycompany.utils.Statics;
@@ -17,21 +18,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 /**
  *
  * @author selim
  */
 public class FilmService {
-    
+
     public static FilmService instance = null;
-    private ConnectionRequest req; 
+    private ConnectionRequest req;
     public boolean resultOK;
-    
+    public String nom;
+
     private FilmService() {
         req = new ConnectionRequest();
     }
-    
+
     public static FilmService getInstance() {
         if (instance == null) {
             instance = new FilmService();
@@ -39,8 +40,7 @@ public class FilmService {
         return instance;
     }
 
-    
-    public ArrayList<Film> getAllFilms(){
+    public ArrayList<Film> getAllFilms() {
         ArrayList<Film> films = new ArrayList<>();
         String url = Statics.BASE_URL + "/film_mobile/";
         req.setUrl(url);
@@ -50,13 +50,13 @@ public class FilmService {
             public void actionPerformed(NetworkEvent evt) {
                 String jsonText = new String(req.getResponseData());
                 try {
-                    
+
                     JSONParser j = new JSONParser();
-                    Map<String,Object> filmsJSON = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
-                    List< Map<String,Object>> list =(List< Map<String,Object>>) filmsJSON.get("root");
-                    for ( Map<String,Object> obj: list){
+                    Map<String, Object> filmsJSON = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
+                    List< Map<String, Object>> list = (List< Map<String, Object>>) filmsJSON.get("root");
+                    for (Map<String, Object> obj : list) {
                         Film f = new Film();
-                        f.setId_film(Float.parseFloat(obj.get("idFilm").toString())); 
+                        f.setId_film(Float.parseFloat(obj.get("idFilm").toString()));
                         f.setNom(obj.get("nom").toString());
                         f.setCategorie(obj.get("categorie").toString());
                         f.setDescription(obj.get("description").toString());
@@ -67,9 +67,8 @@ public class FilmService {
                         f.setId_imdb(obj.get("idImdb").toString());
 
                         films.add(f);
-                    } 
-                }
-                catch (IOException ex) {
+                    }
+                } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
                 req.removeResponseListener(this);
@@ -78,7 +77,7 @@ public class FilmService {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return films;
     }
-    
+
     public Film getFilm(float idFilm) {
         Film film = new Film();
         String url = Statics.BASE_URL + "/film_mobile/" + (int) Math.round(idFilm);
@@ -91,7 +90,7 @@ public class FilmService {
                 try {
                     JSONParser j = new JSONParser();
                     Map<String, Object> filmJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
-                    film.setId_film(Float.parseFloat(filmJson.get("idFilm").toString())); 
+                    film.setId_film(Float.parseFloat(filmJson.get("idFilm").toString()));
                     film.setNom(filmJson.get("nom").toString());
                     film.setCategorie(filmJson.get("categorie").toString());
                     film.setDescription(filmJson.get("description").toString());
@@ -125,29 +124,57 @@ public class FilmService {
         return resultOK;
     }
 
-    /**
-    public boolean addFilm (JSONObject json) {
-        //String url = BASE_URL+"/addReclamationApi?type_reclamation="+type.getText()+"&description="+description.getText();
-
-        String url = Statics.BASE_URL + "/film_mobile/add";
-
-        req.setUrl(url);
-        req.setPost(false);
+    public boolean search() {
         
-        String requestBody = json.toString();
-        req.setRequestBody(requestBody);
-        
+        req.setUrl("https://api.themoviedb.org/3/movie/tt0120338?api_key=bc707c1f4e36344270536a932b5f6a58");
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                String jsonText = new String(req.getResponseData());
+                try {
+                    JSONParser j = new JSONParser();
+                    Map<String, Object> filmJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
+                    nom = filmJson.get("original_title").toString();
+                    System.out.println("test");
+                    System.out.println(nom);
+                    System.out.println("test2");
+                    /**req.removeResponseListener(this);
+                    NetworkManager.getInstance().addToQueue(req);
+
+                    req.setUrl(Statics.BASE_URL + "/film_mobile/add?nom=" + nom);
+                    req.addResponseListener(new ActionListener<NetworkEvent>() {
+                        @Override
+                        public void actionPerformed(NetworkEvent evt) {
+                            String jsonText = new String(req.getResponseData());
+                        }
+                    });**/
+
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
                 req.removeResponseListener(this);
             }
         });
-        NetworkManager.getInstance().addToQueueAndWait(req);
+        System.out.println("" + resultOK);
+        NetworkManager.getInstance().addToQueue(req);
         return resultOK;
-    } **/
-    
+    }
 
-    
+    /**
+     * public boolean addFilm (JSONObject json) { //String url =
+     * BASE_URL+"/addReclamationApi?type_reclamation="+type.getText()+"&description="+description.getText();
+     *
+     * String url = Statics.BASE_URL + "/film_mobile/add";
+     *
+     * req.setUrl(url); req.setPost(false);
+     *
+     * String requestBody = json.toString(); req.setRequestBody(requestBody);
+     *
+     * req.addResponseListener(new ActionListener<NetworkEvent>() {
+     *
+     * @Override public void actionPerformed(NetworkEvent evt) { resultOK =
+     * req.getResponseCode() == 200; //Code HTTP 200 OK
+     * req.removeResponseListener(this); } });
+     * NetworkManager.getInstance().addToQueueAndWait(req); return resultOK; } *
+     */
 }
