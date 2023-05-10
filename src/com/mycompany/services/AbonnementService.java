@@ -89,8 +89,8 @@ return resultOK;
     
     a.setId_user((int)1);
     a.setType(obj.get("type").toString());
-    a.setDateDebut((Date) obj.get("dateDebut"));
-    a.setDateExpiration((Date) obj.get("dateExpiration"));
+    
+  
     
     
     abonnements.add(a);
@@ -108,7 +108,7 @@ return resultOK;
      
    
      public ArrayList<Abonnement> getAllAbonnements(){
-          String url = BASE_URL+"/abonnement/AllAbonnements";
+          String url = BASE_URL+"/abonnement/Alltest";
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {

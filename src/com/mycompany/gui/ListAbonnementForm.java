@@ -71,6 +71,8 @@ public class ListAbonnementForm extends BaseForm {
          spl.getAllStyles().setFgColor(0x00000);
          Label spl2 = new Label("Abonnement type: " + "  " + a.getType());
          spl2.getAllStyles().setFgColor(0x00000);
+         
+       
         
   
          
