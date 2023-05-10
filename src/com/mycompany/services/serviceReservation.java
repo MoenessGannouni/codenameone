@@ -114,7 +114,8 @@ public class serviceReservation {
                 re.setId_reservation((int)id_reservation);
                 re.setPrix_final(Float.parseFloat(obj.get("prixFinal").toString()));
           //  re.setId_user(Float.parseFloat(((Double) ((Map<String, Object>) obj.get("idUser")).get("idUser")).toString()));
-                              re.setId_user(Float.parseFloat(obj.get("prixFinal").toString()));
+                              //re.setId_user(Float.parseFloat(obj.get("prixFinal").toString()));
+re.setId_user(1);
 
                 re.setId_film(Float.parseFloat(obj.get("idFilm").toString()));
                 re.setState(Boolean.parseBoolean(obj.get("state").toString()));

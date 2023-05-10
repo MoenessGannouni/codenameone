@@ -77,7 +77,6 @@ public class FilmService {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return films;
     }
-
     public Film getFilm(float idFilm) {
         Film film = new Film();
         String url = Statics.BASE_URL + "/film_mobile/" + (int) Math.round(idFilm);

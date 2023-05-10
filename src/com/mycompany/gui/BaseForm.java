@@ -92,7 +92,6 @@ public class BaseForm extends Form {
         tb.addMaterialCommandToSideMenu("Add Film", FontImage.MATERIAL_MOVIE, e -> new AddFilm(res).show());
         tb.addMaterialCommandToSideMenu("Projections", FontImage.MATERIAL_MOVIE, e -> new ListProjection(res).show());
         tb.addMaterialCommandToSideMenu("Add Projections", FontImage.MATERIAL_MOVIE, e -> new AddProjection(res).show());
-        tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
         tb.addMaterialCommandToSideMenu("Add Reservation", FontImage.MATERIAL_UPDATE, e -> new AddReservation(this).show());
         tb.addMaterialCommandToSideMenu("Add Reservation Snack", FontImage.MATERIAL_MOVIE, e -> new AddReservationSnack(res,this).show());
         tb.addMaterialCommandToSideMenu("Add Reservation Place", FontImage.MATERIAL_MOVIE, e -> new AddReservationPlace(res,this).show());
@@ -108,5 +107,17 @@ public class BaseForm extends Form {
 
       // tb.addMaterialCommandToSideMenu("Modify reservation Snack", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
 
+
+        // tb.addMaterialCommandToSideMenu("Films", FontImage.MATERIAL_MOVIE, e -> new ListFilm(res).show());
+        //tb.addMaterialCommandToSideMenu("Add Film", FontImage.MATERIAL_MOVIE, e -> new AddFilm(res).show());
+        // tb.addMaterialCommandToSideMenu("Projections", FontImage.MATERIAL_MOVIE, e -> new ListProjection(res).show());
+        tb.addMaterialCommandToSideMenu("afficher les cinemas", FontImage.MATERIAL_UPDATE, e -> new ListCinema(res).show());
+        tb.addMaterialCommandToSideMenu(" addcinema", FontImage.MATERIAL_MOVIE, e -> new AddCinema(res).show());
+        tb.addMaterialCommandToSideMenu("panier", FontImage.MATERIAL_MOVIE, e -> new panier(res).show());
+        tb.addMaterialCommandToSideMenu("reserver place", FontImage.MATERIAL_MOVIE, e -> new place(res).show());
+        //  tb.addMaterialCommandToSideMenu(" snaaacckk", FontImage.MATERIAL_MOVIE, e -> new snacktest(res).show());
+
+       // tb.addMaterialCommandToSideMenu("Add Projections", FontImage.MATERIAL_MOVIE, e -> new AddProjection(res).show());
+        tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
     }
 }
