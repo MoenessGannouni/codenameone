@@ -93,5 +93,20 @@ public class BaseForm extends Form {
         tb.addMaterialCommandToSideMenu("Projections", FontImage.MATERIAL_MOVIE, e -> new ListProjection(res).show());
         tb.addMaterialCommandToSideMenu("Add Projections", FontImage.MATERIAL_MOVIE, e -> new AddProjection(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
+        tb.addMaterialCommandToSideMenu("Add Reservation", FontImage.MATERIAL_UPDATE, e -> new AddReservation(this).show());
+        tb.addMaterialCommandToSideMenu("Add Reservation Snack", FontImage.MATERIAL_MOVIE, e -> new AddReservationSnack(res,this).show());
+        tb.addMaterialCommandToSideMenu("Add Reservation Place", FontImage.MATERIAL_MOVIE, e -> new AddReservationPlace(res,this).show());
+
+        tb.addMaterialCommandToSideMenu("Show reservation", FontImage.MATERIAL_SETTINGS, e -> new ListReservation(res,this).show());
+        tb.addMaterialCommandToSideMenu("Show Reservation Place", FontImage.MATERIAL_MOVIE, e -> new ListReservationPlace(res,this).show());
+        tb.addMaterialCommandToSideMenu("Show Reservation Snack", FontImage.MATERIAL_MOVIE, e -> new ListReservationSnack(res,this).show());
+
+        tb.addMaterialCommandToSideMenu("Modify Reservaation", FontImage.MATERIAL_MOVIE, e -> new ModifierReservation(res).show());
+        tb.addMaterialCommandToSideMenu("Modify reservation Snack", FontImage.MATERIAL_EXIT_TO_APP, e -> new ModifierReservationSnack(res).show());
+       tb.addMaterialCommandToSideMenu("Show Chart", FontImage.MATERIAL_MOVIE, e -> new ReservationChartService().showChart());
+              tb.addMaterialCommandToSideMenu("Show recommanded Snack", FontImage.MATERIAL_MOVIE, e -> new RecomandedSnack(res,this).show());
+
+      // tb.addMaterialCommandToSideMenu("Modify reservation Snack", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
+
     }
 }
