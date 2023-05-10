@@ -16,7 +16,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
-
 package com.mycompany.gui;
 
 import com.codename1.components.ScaleImageLabel;
@@ -50,14 +49,13 @@ public class BaseForm extends Form {
     public BaseForm(String title, Layout contentPaneLayout) {
         super(title, contentPaneLayout);
     }
-    
-    
+
     public Component createLineSeparator() {
         Label separator = new Label("", "WhiteSeparator");
         separator.setShowEvenIfBlank(true);
         return separator;
     }
-    
+
     public Component createLineSeparator(int color) {
         Label separator = new Label("", "WhiteSeparator");
         separator.getUnselectedStyle().setBgColor(color);
@@ -69,31 +67,30 @@ public class BaseForm extends Form {
     protected void addSideMenu(Resources res) {
         Toolbar tb = getToolbar();
         Image img = res.getImage("profile-background.jpg");
-        if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
+        if (img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
             img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
         }
         ScaleImageLabel sl = new ScaleImageLabel(img);
         sl.setUIID("BottomPad");
         sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-        
+
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
                 sl,
                 FlowLayout.encloseCenterBottom(
                         new Label(res.getImage("face.jpg"), "PictureWhiteBackgrond"))
         ));
-        
-        tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new ListCinema(res).show());
+
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
-        tb.addMaterialCommandToSideMenu("Films", FontImage.MATERIAL_MOVIE, e -> new ListFilm(res).show());
-        tb.addMaterialCommandToSideMenu("Add Film", FontImage.MATERIAL_MOVIE, e -> new AddFilm(res).show());
-        tb.addMaterialCommandToSideMenu("Projections", FontImage.MATERIAL_MOVIE, e -> new ListProjection(res).show());
-        
+        // tb.addMaterialCommandToSideMenu("Films", FontImage.MATERIAL_MOVIE, e -> new ListFilm(res).show());
+        //tb.addMaterialCommandToSideMenu("Add Film", FontImage.MATERIAL_MOVIE, e -> new AddFilm(res).show());
+        // tb.addMaterialCommandToSideMenu("Projections", FontImage.MATERIAL_MOVIE, e -> new ListProjection(res).show());
+        tb.addMaterialCommandToSideMenu("afficher les cinemas", FontImage.MATERIAL_UPDATE, e -> new ListCinema(res).show());
+        tb.addMaterialCommandToSideMenu(" addcinema", FontImage.MATERIAL_MOVIE, e -> new AddCinema(res).show());
         tb.addMaterialCommandToSideMenu("panier", FontImage.MATERIAL_MOVIE, e -> new panier(res).show());
         tb.addMaterialCommandToSideMenu("reserver place", FontImage.MATERIAL_MOVIE, e -> new place(res).show());
-        tb.addMaterialCommandToSideMenu(" snaaacckk", FontImage.MATERIAL_MOVIE, e -> new snacktest(res).show());
-        tb.addMaterialCommandToSideMenu(" addcinema", FontImage.MATERIAL_MOVIE, e -> new AddCinema(res).show());
+        //  tb.addMaterialCommandToSideMenu(" snaaacckk", FontImage.MATERIAL_MOVIE, e -> new snacktest(res).show());
 
-        tb.addMaterialCommandToSideMenu("Add Projections", FontImage.MATERIAL_MOVIE, e -> new AddProjection(res).show());
+       // tb.addMaterialCommandToSideMenu("Add Projections", FontImage.MATERIAL_MOVIE, e -> new AddProjection(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
     }
 }

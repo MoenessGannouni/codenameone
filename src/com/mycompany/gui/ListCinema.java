@@ -61,28 +61,26 @@ public class ListCinema extends BaseForm {
 
             Button delete = new Button("delete " + r.getNom());
             Button voirplus = new Button("voir les salles " + r.getId_cinema());
-            Button location = new Button("voirlocation " + r.getLocalisation());
+            Button location = new Button("voir la location " + r.getLocalisation());
 
-            
             /*  title.addActionListener(e -> {
                 float idres = r.getId_user();
                 System.out.println(idres);
                 new (this,idres).show();
             });*/
-            addAll(lab, title, delete, voirplus,update,location);
+            addAll(lab, delete, location, title, voirplus, update);
 
             title.addActionListener(e -> {
                 float idsalle = r.getId_cinema();
                 new AddSalle(res, idsalle).show();
             });
 
-            
-delete.addActionListener((evt) -> {
+            delete.addActionListener((evt) -> {
                 Message m = new Message("Your cinema has been deleted successfully !");
 
                 if (Dialog.show("Confirmation", "cinema deleted successfully", "supprimer", "non")) {
                     servicecinema.getInstance().deleteCinema(r.getId_cinema());
-new ListCinema(res).show();
+                    new ListCinema(res).show();
                 } else {
                     System.out.println(" annulé.");
                 }
@@ -98,16 +96,17 @@ new ListCinema(res).show();
 
             location.addActionListener(e -> {
                 String locationweb = r.getLocalisation();
+                System.out.println("aaaaa" + locationweb);
                 new apimap(res, locationweb).show();
             });
- update.addActionListener(e -> {
-                     float id = r.getId_cinema();
+            update.addActionListener(e -> {
+                float id = r.getId_cinema();
 
                 String nom = r.getNom();
                 String description = r.getDescription();
                 String localisa = r.getLocalisation();
-     System.out.println(id+nom+ description+localisa);
-                new updatecinema(res, id,nom, description,localisa).show();
+                System.out.println(id + nom + description + localisa);
+                new updatecinema(res, id, nom, description, localisa).show();
             });
         }
 

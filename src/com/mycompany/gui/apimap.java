@@ -6,6 +6,7 @@
 package com.mycompany.gui;
 
 import com.codename1.components.WebBrowser;
+import com.codename1.ui.Button;
 import com.codename1.ui.Display;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
@@ -32,5 +33,11 @@ public class apimap extends BaseForm{
     browser.setPreferredSize(new Dimension(2000, 2000)); // Définir la taille de la carte
    add(browser);
    show();
+   Button back = new Button("back");
+   back.addActionListener(e -> {
+                new ListCinema(res).show();
+            });
+   
+   add(back);
 }
 }

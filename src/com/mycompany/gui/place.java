@@ -47,6 +47,7 @@ import java.util.HashSet;
  */
 public class place extends BaseForm{
            static HashSet<String> List_New_Reservation = new HashSet<>();
+           static HashSet<String> List_Reservation_Affi = new HashSet<>();
 
       
     public place(Resources res) {
@@ -117,7 +118,11 @@ square.getUnselectedStyle().setBgColor(0x808080);
                         List_New_Reservation.remove(coords);
                         square.getUnselectedStyle().setBgColor(0x0000ff);
                     }  else {
+                        String s="";
                         List_New_Reservation.add(coords);
+                         
+                        s="Ch(rang:"+finalRow+","+" n°:"+finalCol+")";
+                        List_Reservation_Affi.add(s);
                         square.getUnselectedStyle().setBgColor(0xff0000);
                     }
                     // Mettre à jour le label avec les coordonnées
@@ -153,7 +158,9 @@ alertButton.addActionListener(e -> {
             Dialog.show("Information", message, "OK", null);
 
     } else {
-        message = "Vous avez réservé les chaises suivantes :\n" + List_New_Reservation.toString() + "\n\nVoulez-vous acheter des snacks ?";
+        
+        message = "Vous avez réservé les chaises suivantes :\n"
+        + List_Reservation_Affi.toString() + "\n\nVoulez-vous acheter des snacks ?";
         if (Dialog.show("Confirmation", message, "Acheter", "Non")) {
             System.out.println("Achat effectué !");
                        // new panier().show();
