@@ -11,18 +11,18 @@ package com.mycompany.entites;
  */
 public class snack {
 
-    private int id_snack;
+    private float id_snack;
     private String nom;
     private float prix;
-    private int quantite;
+    private float quantite;
     private String photo;
-    private int id_cinema;
+    private float id_cinema;
 
     
     public snack() {
     }
 
-    public snack(String nom, float prix, int quantite, String photo, int id_cinema) {
+    public snack(String nom, float prix, float quantite, String photo, float id_cinema) {
         this.nom = nom;
         this.prix = prix;
         this.quantite = quantite;
@@ -37,11 +37,11 @@ public class snack {
         this.photo = photo;
     }
 
-    public int getId_snack() {
+    public float getId_snack() {
         return id_snack;
     }
 
-    public void setId_snack(int id_snack) {
+    public void setId_snack(float id_snack) {
         this.id_snack = id_snack;
     }
 
@@ -61,11 +61,11 @@ public class snack {
         this.prix = prix;
     }
 
-    public int getQuantite() {
+    public float getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(int quantite) {
+    public void setQuantite(float quantite) {
         this.quantite = quantite;
     }
 
@@ -79,15 +79,15 @@ public class snack {
 
 
 
-    public int getId_cinema() {
+    public float getId_cinema() {
         return id_cinema;
     }
 
-    public void setId_cinema(int id_cinema) {
+    public void setId_cinema(float id_cinema) {
         this.id_cinema = id_cinema;
     }
 
-    public snack(int id_snack, String nom, float prix, int quantite, String photo, int id_cinema) {
+    public snack(float id_snack, String nom, float prix, float quantite, String photo, float id_cinema) {
         this.id_snack = id_snack;
         this.nom = nom;
         this.prix = prix;

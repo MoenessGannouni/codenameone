@@ -90,6 +90,8 @@ public class BaseForm extends Form {
         
         tb.addMaterialCommandToSideMenu("panier", FontImage.MATERIAL_MOVIE, e -> new panier(res).show());
         tb.addMaterialCommandToSideMenu("reserver place", FontImage.MATERIAL_MOVIE, e -> new place(res).show());
+        tb.addMaterialCommandToSideMenu(" snaaacckk", FontImage.MATERIAL_MOVIE, e -> new snacktest(res).show());
+        tb.addMaterialCommandToSideMenu(" addcinema", FontImage.MATERIAL_MOVIE, e -> new AddCinema(res).show());
 
         tb.addMaterialCommandToSideMenu("Add Projections", FontImage.MATERIAL_MOVIE, e -> new AddProjection(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());

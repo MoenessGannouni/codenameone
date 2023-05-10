@@ -13,6 +13,8 @@ import com.codename1.io.NetworkManager;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.entites.cinema;
+import com.mycompany.entites.salle;
+import com.mycompany.entites.snack;
 import com.mycompany.utils.Statics;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -23,29 +25,29 @@ import java.util.Map;
 
 /**
  *
- * @author kortb
+ * @author rayen
  */
-public class servicecinema {
-    private static servicecinema instance = null;
+public class SnackService {
+    private static SnackService instance = null;
     private ConnectionRequest req;
     public static boolean resultOk = true;
-    public ArrayList<cinema> ci;
+    public ArrayList<snack> snacklist;
 
-    private servicecinema() {
+    private SnackService() {
         req = new ConnectionRequest();
     }
     
-    public static servicecinema getInstance() {
+    public static SnackService getInstance() {
         if (instance == null) {
-            instance = new servicecinema();
+            instance = new SnackService();
         }
         return instance;
     }
 
     
-    public void ajoutcinema(cinema c) {
-        
-        String url =Statics.BASE_URL+"/cinema/addcinemaJSON/new?nom="+c.getNom()+"&idUser="+c.getId_user()+"&localisation="+c.getLocalisation()+"&description="+c.getDescription()+"&photo="+c.getPhoto(); 
+  /* public void ajoutsalle(salle salle) {
+       // new?largeur=11&longeur=12&acces=true&idCinema=43&nom=ddddd
+        String url =Statics.BASE_URL+"/salle/addsalleJSON/new?longeur="+salle.getLongueur()+"&largeur="+salle.getLongueur()+"&nom="+salle.getNom()+"&idCinema="+salle.getId_cinema(); 
         
         req.setUrl(url);
         req.addResponseListener((e) -> {
@@ -56,13 +58,14 @@ public class servicecinema {
         
         NetworkManager.getInstance().addToQueueAndWait(req);
         
-    }
+    }*/
     
-    
-     public boolean modifierCinema(float id,String nom,String description,String localisation) {
-                    String url = Statics.BASE_URL +"/cinema/updateCinemaJSON/"
-                            +id+"?nom="+nom+"&description="+description+"&localisation="+localisation;
-
+    /*
+     public boolean modifierReservation(int Id_reservation,int Id_film,int Id_user,int Id_projection) {
+            String url = Statics.BASE_URL + "reservation/updateJson/" + Id_reservation
+            + "?filmName=" + Id_film
+            + "&userName=" + Id_user
+            + "&projId=" + Id_projection;
             //127.0.0.1:8000/reservation/updateJson/141?filmName=66&userName=26&projId=8
         req.setUrl(url);
         
@@ -78,9 +81,12 @@ public class servicecinema {
     return resultOk;
         
     }
+    */
     
-      public boolean deleteCinema(float id) {
-        String url = Statics.BASE_URL +"/cinema/deleteidcinemaJSON/"+id;
+    /*
+    
+    public boolean deleteSalle(float id) {
+        String url = Statics.BASE_URL +"/salle/deletemobilesalle/"+id;
         
         req.setUrl(url);
         
@@ -95,67 +101,66 @@ public class servicecinema {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return  resultOk;
     }
-   
+    */
     
-    
-    
-    public ArrayList<cinema> parsecinemas(String jsonText){
+   public ArrayList<snack> parseSnack(String jsonText){
         try {
-            ci= new ArrayList<>();
+                        snacklist= new ArrayList<>();
+
             JSONParser j = new JSONParser();
             Map<String,Object> CategorieListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
            List< Map<String,Object>> list =(List< Map<String,Object>>) CategorieListJson.get("root");
            for ( Map<String,Object> obj: list){
-             cinema re = new cinema();
-            float id_cinema = Float.parseFloat(obj.get("idCinema").toString());
-             //   re.setId_user(Float.parseFloat(((Double) ((Map<String, Object>) obj.get("idUser")).get("idUser")).toString()));
+             snack re = new snack();
+            float id_snack = Float.parseFloat(obj.get("idSnack").toString());
 
-                re.setId_cinema((int)id_cinema);
-                re.setNom(obj.get("nom").toString());
-                re.setDescription(obj.get("description").toString());
-                re.setPhoto(obj.get("photo").toString());
-               re.setLocalisation(obj.get("localisation").toString());
+                re.setId_snack(id_snack);
+                re.setPrix(Float.parseFloat(obj.get("prix").toString()));
+              re.setQuantite (Float.parseFloat(obj.get("quantite").toString()));
+              re.setNom(obj.get("nom").toString());
 
-                re.setId_user(Float.parseFloat(((Double) ((Map<String, Object>) obj.get("idUser")).get("idUser")).toString()));
-                ci.add(re);
+               
+                //re.setId_projection(Float.parseFloat(((Double) ((Map<String, Object>) obj.get("idProjection")).get("idProjection")).toString()));
+
+             snacklist.add(re);
          
         } }
            catch (IOException ex) {
              
         }
-          return ci;
+          return snacklist;
  }
     
-     public ArrayList<cinema> getAllCinema(){
-        String url = Statics.BASE_URL + "/cinema/mobile/Allcinemaaa";
+     public ArrayList<snack> getAllsnack(float id){
+        String url = Statics.BASE_URL + "/mobile/mobilesnackidcine/"+id;
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                ci = parsecinemas(new String(req.getResponseData()));
+                snacklist = parseSnack(new String(req.getResponseData()));
                 req.removeResponseListener(this);
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
-        return ci;
+        return snacklist;
     }
- 
-    /* public cinema getcinema(float idci) {
-    final cinema[] cinemas = new cinema[1]; // Create a final array to hold the reservation object
+ /*
+     public Reservation getReservation(float idres) {
+    final Reservation[] reservation = new Reservation[1]; // Create a final array to hold the reservation object
 
-    String url = Statics.BASE_URL + "reservation/OneReservationJson/" + idci;
+    String url = Statics.BASE_URL + "reservation/OneReservationJson/" + idres;
     req.setUrl(url);
     req.setPost(false);
 
     req.addResponseListener(new ActionListener<NetworkEvent>() {
         @Override
         public void actionPerformed(NetworkEvent evt) {
-            ci = parsecinemas(new String(req.getResponseData()));
-            if (!ci.isEmpty()) {
+            reservations = parseReservations(new String(req.getResponseData()));
+            if (!reservations.isEmpty()) {
                 // Update the reservation object with the received data
-                cinemas[0] = cinemas.get(0);
-                System.out.println(cinemas[0]); // Debugging purposes
+                reservation[0] = reservations.get(0);
+                System.out.println(reservation[0]); // Debugging purposes
             }
             req.removeResponseListener(this);
         }
@@ -163,8 +168,26 @@ public class servicecinema {
 
     NetworkManager.getInstance().addToQueueAndWait(req);
     return reservation[0];
-}*/
+}
+  */
     
- 
+    
+    /*
+    public ArrayList<salle> getsalle(float id){
+        String url = Statics.BASE_URL + "/salle/mobilesalleidcine/"+id;
+        req.setUrl(url);
+        req.setPost(false);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                sallelist = parseSalle(new String(req.getResponseData()));
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return sallelist;
+    }
+ */
+
 }
 

@@ -12,6 +12,7 @@ package com.mycompany.gui;
 
 import com.codename1.components.MultiButton;
 import com.codename1.l10n.SimpleDateFormat;
+import com.codename1.messaging.Message;
 import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
@@ -94,6 +95,8 @@ produitsList.addActionListener((evt) -> {
             for (Object listener : listeners) {
                 removeButton.removeActionListener((ActionListener) listener);
             }
+                               new editpanier(res).show();
+
         });
     }
 });
@@ -114,10 +117,17 @@ produitsList.addActionListener((evt) -> {
     // Ajouter un ActionListener au bouton
     optionsButton.addActionListener((evt) -> {
         // Créer un nouveau dialogue
-        Dialog optionsDialog = new Dialog("Options");
-        
-        
+                float s=0;
 
+        for (snack produit : panier.panierlist) {
+        s=s+produit.getPrix();
+}
+        Dialog optionsDialog = new Dialog("la somme est: "+s+"DT" );
+
+
+
+
+        System.out.println("somme est   :"+s+"DT");
         Button clearButton = new Button("Vider le panier");
         Button validateButton = new Button("Payer");
         optionsDialog.add(clearButton);
@@ -127,7 +137,7 @@ produitsList.addActionListener((evt) -> {
         clearButton.addActionListener((e) -> {
             panier.panierlist.clear();       
             System.out.println("Le panier a été vidé "+ panier.panierlist);
-                   
+                   new panier(res).show();
 
             optionsDialog.dispose(); // Fermer le dialogue
         });
@@ -139,11 +149,7 @@ produitsList.addActionListener((evt) -> {
 
         // Ajouter un ActionListener au bouton "Valider"
         validateButton.addActionListener((e) -> {
-     
-
-        
-
-            System.out.println("Contenu du panier : " + panier.panierlist);
+      System.out.println("Contenu du panier : " + panier.panierlist);
             optionsDialog.dispose(); // Fermer le dialogue
             
             

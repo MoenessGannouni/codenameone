@@ -32,6 +32,7 @@ import com.codename1.ui.spinner.Picker;
 import com.mycompany.entites.reservation_snack;
 import com.mycompany.entites.snack;
 import com.mycompany.services.FilmService;
+import com.mycompany.services.SnackService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
@@ -66,11 +67,11 @@ public class panier extends BaseForm{
     // Créer la forme
 
     // Créer la liste des produits
-    ArrayList<snack> produits = new ArrayList<>();
-    
+  //  ArrayList<snack> produits = new ArrayList<>();
+    ArrayList<snack> produits = SnackService.getInstance().getAllsnack(43);
     
  Button addButton = new Button("ajouter");
-            add( addButton);
+           add( addButton);
 
     produits.add(new snack("snack", (float) 1.00, 5, "ff"));
     produits.add(new snack("coca", (float) 5.00, 5, "ff"));
@@ -119,7 +120,7 @@ produitsList.addActionListener((evt) -> {
         
 
         Button clearButton = new Button("Vider le panier");
-        Button validateButton = new Button("Payer");
+        Button validateButton = new Button("verifier");
         optionsDialog.add(clearButton);
         optionsDialog.add(validateButton);
 
