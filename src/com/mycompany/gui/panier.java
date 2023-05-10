@@ -55,11 +55,7 @@ public class panier extends BaseForm{
         super.addSideMenu(res);
         tb.addSearchCommand(e -> {});
         
-        Image cinemaImage = res.getImage("cinema.jpg").scaled(Display.getInstance().getDisplayWidth(), Display.getInstance().getDisplayHeight() / 3);
-            Label cinemaLabel = new Label(cinemaImage);
-            cinemaLabel.setUIID("Container");
-            cinemaLabel.getAllStyles().setMarginTop(2);
-            add(cinemaLabel);
+
          //////////////////////////////////   
         //     System.out.println("placereservé from panier affichage pour borry"+Place.List_New_Reservation);
                         ArrayList<reservation_snack> reservation_snacks = new ArrayList<>();

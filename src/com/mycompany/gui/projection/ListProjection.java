@@ -17,6 +17,7 @@ import com.mycompany.entites.Film;
 import com.mycompany.entites.Projection;
 import com.mycompany.gui.BaseForm;
 import com.mycompany.gui.film.FilmDetail;
+import com.mycompany.gui.place;
 import com.mycompany.services.FilmService;
 import com.mycompany.services.ProjectionService;
 import java.util.ArrayList;
@@ -58,6 +59,9 @@ public class ListProjection  extends BaseForm {
             btn.addActionListener(e-> {
             ProjectionDetail.idProjection = p.getId_projection();
                 new ProjectionDetail(res).show();
+            });
+            btn1.addActionListener(e-> {
+                new place(res).show();
             });
         }
         

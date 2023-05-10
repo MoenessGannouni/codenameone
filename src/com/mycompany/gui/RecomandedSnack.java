@@ -34,8 +34,12 @@ public class RecomandedSnack extends Form{
             Button quantity = new Button("Quantity: " + snack.get("quantity"));
             addAll(title, quantity);
         }
-        
+        Button bt = new Button("panier");
+        bt.addActionListener(e-> {
+            new panier(res).show();
+        });
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
+        add(bt);
     }
 }
 

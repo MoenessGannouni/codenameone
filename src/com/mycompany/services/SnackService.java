@@ -112,9 +112,10 @@ public class SnackService {
            List< Map<String,Object>> list =(List< Map<String,Object>>) CategorieListJson.get("root");
            for ( Map<String,Object> obj: list){
              snack re = new snack();
-            float id_snack = Float.parseFloat(obj.get("idSnack").toString());
+          float id_snack = Float.parseFloat(obj.get("idSnack").toString());
+re.setId_snack(19);
 
-                re.setId_snack(id_snack);
+               re.setId_snack(id_snack);
                 re.setPrix(Float.parseFloat(obj.get("prix").toString()));
               re.setQuantite (Float.parseFloat(obj.get("quantite").toString()));
               re.setNom(obj.get("nom").toString());
@@ -132,7 +133,7 @@ public class SnackService {
  }
     
      public ArrayList<snack> getAllsnack(float id){
-        String url = Statics.BASE_URL + "/mobile/mobilesnackidcine/"+id;
+        String url = Statics.BASE_URL + "/mobile/mobilesnackidcine/"+5;
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
