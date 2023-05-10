@@ -90,6 +90,7 @@ public class BaseForm extends Form {
         tb.addMaterialCommandToSideMenu("Add Projections", FontImage.MATERIAL_MOVIE, e -> new AddProjection(res).show());
         tb.addMaterialCommandToSideMenu("List Abonnements", FontImage.MATERIAL_MOVIE, e -> new ListAbonnementForm(res).show());
         tb.addMaterialCommandToSideMenu("Add Abonnement", FontImage.MATERIAL_MOVIE, e -> new AddAbonnementForm().show());
+        tb.addMaterialCommandToSideMenu("List Badges", FontImage.MATERIAL_MOVIE, e -> new ListBadgeForm(res).show());
        
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
         

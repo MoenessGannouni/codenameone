@@ -5,7 +5,6 @@
  */
 package com.mycompany.gui;
 
-import com.codename1.messaging.Message;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
@@ -13,30 +12,28 @@ import com.codename1.ui.Display;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
-import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entites.Abonnement;
-import com.mycompany.entites.Projection;
+import com.mycompany.entites.Badge;
 import com.mycompany.services.AbonnementService;
-import com.mycompany.services.ProjectionService;
-import java.io.IOException;
+import com.mycompany.services.BadgeService;
 import java.util.ArrayList;
 
 /**
  *
  * @author Home
  */
-public class ListAbonnementForm extends BaseForm {
+public class ListBadgeForm extends BaseForm {
 
-    public ListAbonnementForm (Resources res) {
+    public ListBadgeForm (Resources res) {
         
-        super("List Abonnements", BoxLayout.y());
+        super("List Badges", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("List Abonnements");
+        setTitle("List Badges");
         getContentPane().setScrollVisible(false);
         
         super.addSideMenu(res);
@@ -49,8 +46,8 @@ public class ListAbonnementForm extends BaseForm {
             add(cinemaLabel);
 
         
-        ArrayList<Abonnement> tasks = AbonnementService.getInstance().getAllAbonnements();
-        for (Abonnement a : tasks) {
+        ArrayList<Badge> tasks = BadgeService.getInstance().getAllBadges();
+        for (Badge b : tasks) {
          /*   TextField title = new TextField("Abonement number: " + a.getId_abonnement()+"Type Abonnement"+a.getType());
                      Button sup = new Button("Delete");
                    sup.addActionListener((evt) -> {
@@ -67,35 +64,41 @@ public class ListAbonnementForm extends BaseForm {
                   Label i = new Label();
                   
                  
-         Label spl = new Label("Abonnement id : " + "  " + a.getId_abonnement()); 
+         Label spl = new Label("Badge id : " + "  " + b.getId_badge()); 
          spl.getAllStyles().setFgColor(0x00000);
-         Label spl2 = new Label("Abonnement type: " + "  " + a.getType());
+         Label spl2 = new Label("Badge type: " + "  " + b.getType());
          spl2.getAllStyles().setFgColor(0x00000);
+     
         
   
          
          
          Button sup = new Button("Delete");
-                  Button upd = new Button("Update");
-                 
-             
+                              
                 sup.addActionListener((evt) -> {
-                   AbonnementService.getInstance().deleteAbonnement(a.getId_abonnement());
-                    Dialog.show("Alert", "Delete Abonnement ?", new Command("OK"));
-                    Dialog.show("Success", "Abonnement deleted successfully", new Command("OK"));
+                   BadgeService.getInstance().deleteBadge(b.getId_badge());
+                    Dialog.show("Alert", "Delete Badge ?", new Command("OK"));
+                    Dialog.show("Success", "Badge deleted successfully", new Command("OK"));
                      
                     });
-                 upd.addActionListener((evt) -> {
-                        new ModifAbonnnementForm(a.getId_abonnement()).show();
-                    });
+              
+                 
                  
                   
                      
                    
-        addAll(spl,spl2,sup,upd)
-                ;
+        addAll(spl,spl2,sup);
+          
+                
         
+
         }
+         Button add = new Button("add badge");
+                              
+                add.addActionListener((evt) -> {
+                  new AddBadgeForm().show();
+                    });
+        addAll(add);
         
         
         
@@ -103,7 +106,5 @@ public class ListAbonnementForm extends BaseForm {
         
     }
     
-        
-        //getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
     
 }
