@@ -3,32 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/ListProjection.java</file>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/AddFilm.java</file>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/ListFilm.java</file>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/AddProjection.java</file>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/NewsfeedForm.java</file>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/FilmDetail.java</file>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/BaseForm.java</file>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/services/FilmService.java</file>
-            <file>file:/C:/Users/selim/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/services/ProjectionService.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/pidevv/MyApplication.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/BaseForm.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/entites/Badge.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/ListBadgeForm.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/ListProjection.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/ModifAbonnnementForm.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/AbonnementDetail.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/AddAbonnementForm.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/services/FilmService.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/AddFilm.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/ListAbonnementForm.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/services/AbonnementService.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/AddBadgeForm.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/services/BadgeService.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/gui/DeleteAbonnementForm.java</file>
-            <file>file:/C:/Users/Home/Desktop/WorkShops-CodenameOne-master/src/com/mycompany/entites/Abonnement.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
