@@ -11,6 +11,7 @@ import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
+import com.mycompany.entites.reservation_snack;
 import com.mycompany.entities.ReservationPlace;
 import com.mycompany.entities.ReservationSnack;
 import com.mycompany.utils.Statics;
@@ -193,5 +194,9 @@ public class serviceReservationSnack {
       System.out.println(jsonData[0]);
     return jsonData[0];
 }
+
+    public void ajoutReservation(reservation_snack rr) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

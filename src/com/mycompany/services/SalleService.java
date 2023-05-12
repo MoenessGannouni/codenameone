@@ -186,6 +186,26 @@ public class SalleService {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return sallelist;
     }
+    
+    
+    
+    
+    
+     public ArrayList<salle> salllleeee(float id){
+        String url = Statics.BASE_URL + "/salle/mobileidsalle/"+id;
+        req.setUrl(url);
+        req.setPost(false);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                sallelist = parseSalle(new String(req.getResponseData()));
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return sallelist;
+    }
+    
  
 
 }
