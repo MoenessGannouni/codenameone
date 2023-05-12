@@ -86,6 +86,7 @@ public class BaseForm extends Form {
 
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Films", FontImage.MATERIAL_MOVIE, e -> new ListFilm(res).show());
+        tb.addMaterialCommandToSideMenu("reserver place", FontImage.MATERIAL_MOVIE, e -> new place(res).show());
         tb.addMaterialCommandToSideMenu("Add Abonnement", FontImage.MATERIAL_MOVIE, e -> new AddAbonnementForm(res).show());
         tb.addMaterialCommandToSideMenu("Projections", FontImage.MATERIAL_MOVIE, e -> new ListProjection(res).show());
         tb.addMaterialCommandToSideMenu("Show reservation", FontImage.MATERIAL_SETTINGS, e -> new ListReservation(res, this).show());

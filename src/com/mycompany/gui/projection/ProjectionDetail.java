@@ -106,13 +106,12 @@ public class ProjectionDetail extends BaseForm {
                             Date date = dateTimePicker.getDate();
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd/HH:mm");
                             String formattedDate = dateFormat.format(date);
-                            if (ProjectionService.getInstance().updateProjection(projection.getId_projection(), comboBox.getSelectedItem(), formattedDate)) {
-                                Dialog.show("Success", "Connection accepted", new Command("OK"));
-                            }
+                            ProjectionService.getInstance().updateProjection(projection.getId_projection(), comboBox.getSelectedItem(), formattedDate);
+                            Dialog.show("Success", "Connection accepted", new Command("OK"));
+                            new ListProjection(res).show();
                         } catch (NumberFormatException e) {
                             Dialog.show("ERROR", "must be a number", new Command("OK"));
                         }
-                        Dialog.show("Success", "Connection accepted", new Command("OK"));
                     }
                 }
             });

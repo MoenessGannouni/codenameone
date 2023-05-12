@@ -139,6 +139,29 @@ public class serviceReservationPlace {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return reservationsPlace;
     }
+     
+     
+     
+     
+     public ArrayList<ReservationPlace> dejaresrve(float id){
+        String url = Statics.BASE_URL+"/reservation/place/reservationidsalle/"+id;
+        req.setUrl(url);
+        req.setPost(false);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                reservationsPlace = parseReservations(new String(req.getResponseData()));
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return reservationsPlace;
+    }
+     
+     
+     
+     
+     
  
      public ReservationPlace getReservation(float idres) {
     final ReservationPlace[] reservationPlace = new ReservationPlace[1]; // Create a final array to hold the reservation object

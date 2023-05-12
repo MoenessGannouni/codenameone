@@ -35,9 +35,10 @@ import java.util.StringTokenizer;
 import com.mycompany.entites.Film;
 import com.codename1.ui.list.GenericListCellRenderer;
 import com.codename1.ui.spinner.Picker;
-import com.mycompany.entites.reservation_snack;
+import com.mycompany.entities.ReservationSnack;
 import com.mycompany.entites.snack;
 import com.mycompany.services.FilmService;
+import com.mycompany.services.serviceReservationSnack;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
@@ -46,7 +47,7 @@ import java.util.Vector;
  * @author rayen
  */
 public class editpanier extends BaseForm{
-
+static ArrayList<ReservationSnack> snackreservation1iste = new ArrayList<ReservationSnack>();
     public editpanier(Resources res) {
         
         super("edit panier", BoxLayout.y());
@@ -150,6 +151,30 @@ produitsList.addActionListener((evt) -> {
         // Ajouter un ActionListener au bouton "Valider"
         validateButton.addActionListener((e) -> {
       System.out.println("Contenu du panier : " + panier.panierlist);
+      for (snack b : panier.panierlist) {
+                    ReservationSnack snackreservation1 = new ReservationSnack(1,b.getPrix(),150,(int)b.getId_snack());
+
+                    boolean reservationExiste = false;
+
+                    for (ReservationSnack existingReservation : snackreservation1iste) {
+                        if (existingReservation.getIdSnack() == b.getId_snack()) {
+                            existingReservation.setQuantite(existingReservation.getQuantite() + 1);
+                            existingReservation.setPrix((existingReservation.getQuantite() + 1)*existingReservation.getPrix());
+                            reservationExiste = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!reservationExiste) {
+                        snackreservation1iste.add(snackreservation1);
+                    }
+                }
+       for(ReservationSnack rr:editpanier.snackreservation1iste){
+                    serviceReservationSnack.getInstance().ajoutReservation(rr);
+                }                  
+                          System.out.println("snackreservation1isteeee " + snackreservation1iste);
+
+      
             optionsDialog.dispose(); // Fermer le dialogue
             
             

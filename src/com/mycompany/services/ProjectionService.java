@@ -111,8 +111,8 @@ public class ProjectionService {
         return projection;
     }
 
-    public boolean addProjection(Film selectedItem, String text) {
-        String url = Statics.BASE_URL + "/projection_mobile/new?idFilm=" + (int) Math.round(selectedItem.getId_film()) + "&date=" + text;
+    public boolean addProjection(Film selectedItem, String text, float idSalle) {
+        String url = Statics.BASE_URL + "/projection_mobile/new?idFilm=" + (int) Math.round(selectedItem.getId_film()) + "&date=" + text + "&idSalle=" + idSalle;
         req.setUrl(url);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override

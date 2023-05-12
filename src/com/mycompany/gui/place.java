@@ -32,7 +32,12 @@ import com.codename1.ui.list.GenericListCellRenderer;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
+import com.mycompany.entites.salle;
+import com.mycompany.entities.ReservationPlace;
 import com.mycompany.services.FilmService;
+import com.mycompany.services.SalleService;
+import com.mycompany.services.serviceReservationPlace;
+import com.mycompany.services.serviceReservationSnack;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -52,7 +57,6 @@ public class place extends BaseForm {
     static HashSet<String> List_Reservation_Affi = new HashSet<>();
 
     public place(Resources res) {
-
         super("Add place", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
@@ -70,16 +74,37 @@ public class place extends BaseForm {
         cinemaLabel.getAllStyles().setMarginTop(2);
         add(cinemaLabel);
         //////////////////////////////////  
+                ArrayList<String> reservedSquares = new ArrayList<String>();
+                  ArrayList <ReservationPlace>  listeplacedejareserve=serviceReservationPlace.getInstance().dejaresrve(38);
+        System.out.println("liistaaaaaaaa"+listeplacedejareserve);
+        for(ReservationPlace bol :listeplacedejareserve){
+                String b=bol.getCoordonnee();
+                reservedSquares.add(b);
+                }
+        
+        System.out.println(reservedSquares);
+        
+        
+          ArrayList<salle> p = SalleService.getInstance().salllleeee(6);
 
+            
+            System.out.println("largeur"+p.get(0).getLargeur());
+        
+        int intlargeur = (int)p.get(0).getLargeur();
+        int intlongeur = (int)p.get(0).getLongueur();
+
+        
+        
+        
         Label emptyLabel = new Label(""); // Texte vide
         emptyLabel.setPreferredH(10);
         int rows = 5;
         int cols = 8;
-        HashSet<String> reservedSquares = new HashSet<>();
+       /* HashSet<String> reservedSquares = new HashSet<>();
         reservedSquares.add("2,2");
         reservedSquares.add("2,4");
         reservedSquares.add("2,5");
-        reservedSquares.add("2,3");
+        reservedSquares.add("2,3");*/
 
         Style squareStyle = new Style();
         squareStyle.setBorder(Border.createLineBorder(1));
@@ -87,8 +112,8 @@ public class place extends BaseForm {
         squareStyle.setBgTransparency(0); // Transparence du fond
         squareStyle.setBgColor(0xFFFFFF); // Couleur du fond
         Container gridContainer = new Container(new GridLayout(rows, cols));
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
+        for (int row = 0; row < intlongeur; row++) {
+            for (int col = 0; col < intlargeur; col++) {
                 Label square = new Label();
                 int finalRow = row;
                 int finalCol = col;
@@ -109,18 +134,20 @@ public class place extends BaseForm {
 
                 square.addPointerPressedListener(e -> {
                     String coords = finalRow + "," + finalCol; // concaténer les coordonnées en une chaîne
+                                            String s = "";
+  
+                    s = "Ch(rang:" + finalRow + "," + " n°:" + finalCol + ")";
 
                     if (reservedSquares.contains(coords)) {
                         System.out.println("impossible deja reservé ");
 
                     } else if (List_New_Reservation.contains(coords)) {
                         List_New_Reservation.remove(coords);
+                        List_Reservation_Affi.remove(s);
                         square.getUnselectedStyle().setBgColor(0x0000ff);
                     } else {
-                        String s = "";
                         List_New_Reservation.add(coords);
 
-                        s = "Ch(rang:" + finalRow + "," + " n°:" + finalCol + ")";
                         List_Reservation_Affi.add(s);
                         square.getUnselectedStyle().setBgColor(0xff0000);
                     }
@@ -161,6 +188,16 @@ public class place extends BaseForm {
                 message = "Vous avez réservé les chaises suivantes :\n"
                         + List_Reservation_Affi.toString() + "\n\nVoulez-vous acheter des snacks ?";
                 if (Dialog.show("Confirmation", message, "Acheter", "Non")) {
+                    
+                    for(String b:List_New_Reservation) {
+
+                        ReservationPlace place = new ReservationPlace(150,b,b.length()*10);
+                                            serviceReservationPlace.getInstance().ajoutReservation(place);
+
+                    }
+                    
+                    
+                    
                     System.out.println("Achat effectué !");
                      new RecomandedSnack(res,this).show();
                     // new panier().show();

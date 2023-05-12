@@ -21,6 +21,7 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entites.cinema;
 import com.mycompany.entites.salle;
+import com.mycompany.gui.projection.AddProjection;
 import com.mycompany.services.SalleService;
 import com.mycompany.services.servicecinema;
 import java.util.ArrayList;
@@ -61,7 +62,9 @@ labelStyle.setFont(Font.createSystemFont(Font.FACE_MONOSPACE, Font.STYLE_BOLD, F
                      Button title = new Button("ajouter projection à " + r.getNom());
              Button delete = new Button("delete " + r.getNom());
 
-                     
+                     title.addActionListener(e-> {
+                     new AddProjection(res, r.getId_salle()).show();
+                     });
                    delete.addActionListener((evt) -> {
                                         Message m = new Message("Your salle has been deleted successfully !");
 

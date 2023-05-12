@@ -16,6 +16,7 @@ import com.codename1.ui.Tabs;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.util.Resources;
+import com.mycompany.entites.reservation_snack;
 import com.mycompany.entities.Reservation;
 import com.mycompany.entities.ReservationSnack;
 import com.mycompany.services.serviceReservation;
@@ -72,9 +73,12 @@ public class AddReservationSnack extends Form{
                 float Prix = Float.parseFloat(prix.getText());
                 float idSnack = Float.parseFloat(idsnack.getText());
 
-                ReservationSnack r = new ReservationSnack(Quantite,Prix,id_reservation,idSnack);
-                System.out.println(r);
-                serviceReservationSnack.getInstance().ajoutReservation(r);
+              /*  ReservationSnack r = new ReservationSnack(Quantite,Prix,id_reservation,idSnack);
+                for(ReservationSnack rr:editpanier.snackreservation1iste){
+                    serviceReservationSnack.getInstance().ajoutReservation(rr);
+                }*/
+             //   System.out.println(r);
+               // serviceReservationSnack.getInstance().ajoutReservation(r);
 
                 iDialog.dispose();
 
