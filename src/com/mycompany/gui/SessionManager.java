@@ -46,11 +46,11 @@ public class SessionManager {
     }
 
     public static String getTel() {
-        return tel;
+        return pref.get("tel",tel);
     }
 
     public static void setTel(String tel) {
-        SessionManager.tel = tel;
+        pref.set("tel",tel);
     }
     
 
@@ -75,7 +75,7 @@ public class SessionManager {
     }
 
     public static void setDate_naissance(String date_naissance) {
-        SessionManager.date_naissance = date_naissance;
+        pref.set("date_naissance",date_naissance);
     }
     
 

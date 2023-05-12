@@ -73,7 +73,7 @@ public class place extends BaseForm {
 
         Label emptyLabel = new Label(""); // Texte vide
         emptyLabel.setPreferredH(10);
-        int rows = 15;
+        int rows = 5;
         int cols = 8;
         HashSet<String> reservedSquares = new HashSet<>();
         reservedSquares.add("2,2");

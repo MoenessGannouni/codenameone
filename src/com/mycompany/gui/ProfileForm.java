@@ -97,20 +97,20 @@ public class ProfileForm extends BaseForm {
         pseudo.setUIID("TextFieldBlack");
         addStringValue("Pseudo", pseudo);
         
-        TextField nom = new TextField(n);
+        TextField nom = new TextField(SessionManager.getNom());
         nom.setUIID("TextFieldBlack");
-        addStringValue("Nom", nom);
+        addStringValue("nom", nom);
         
-        TextField prenom = new TextField(p);
+        TextField prenom = new TextField(SessionManager.getPrenom());
         prenom.setUIID("TextFieldBlack");
-        addStringValue("Prenom", prenom);
+        addStringValue("prenom", prenom);
         
-        TextField tel = new TextField(t);
+        TextField tel = new TextField(SessionManager.getTel());
         tel.setUIID("TextFieldBlack");
-        addStringValue("Tel", tel);
+        addStringValue("tel", tel);
         
         
-        TextField da = new TextField(d);
+        TextField da = new TextField(SessionManager.getDate_naissance());
         da.setUIID("TextFieldBlack");
         addStringValue("Date", da);
         

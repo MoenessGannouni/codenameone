@@ -21,6 +21,10 @@ public class user {
     private String roles;
     private float montant;
     private int id_badge;
+    
+    public user () {
+        
+    }
 
     public user(int id_user, String email, String password, String nom, String prenom, String date_naissance, String pseudo, int tel, String roles, float montant, int id_badge) {
         this.id_user = id_user;
@@ -56,12 +60,6 @@ public class user {
     public void setId_badge(int id_badge) {
         this.id_badge = id_badge;
     }
-
-    
-    
-    
-    
-    
     //Getters Setters
     public int getId_user() {
         return id_user;
